@@ -18,13 +18,13 @@ export const Header: React.FC = () => {
     <header className="sticky top-0 z-40 bg-[#100C09]/95 backdrop-blur-md border-b border-stone-800/80 transition-colors">
       {/* Top micro announcement bar */}
       <div className="bg-[#1C1510] border-b border-stone-800/50 py-1.5 px-4 text-xs text-stone-400 font-medium tracking-wide">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] sm:text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-[#BA5418] font-semibold">58 WILAYAS</span>
-            <span className="text-stone-600">·</span>
-            <span className="truncate">{t.announcement}</span>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-[11px] sm:text-xs">
+          <div className="flex min-w-0 flex-1 items-center gap-2">
+            <span className="text-[#BA5418] font-semibold shrink-0">58 WILAYAS</span>
+            <span className="text-stone-600 shrink-0">·</span>
+            <span className="truncate min-w-0">{t.announcement}</span>
           </div>
-          <div className="hidden sm:flex items-center gap-4 text-stone-400">
+          <div className="hidden sm:flex shrink-0 items-center gap-4 text-stone-400">
             <span className="flex items-center gap-1.5 text-stone-300">
               <MapPin className="w-3 h-3 text-[#BA5418]" />
               <span>Chlef Centre · 060005597</span>

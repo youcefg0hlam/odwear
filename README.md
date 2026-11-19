@@ -12,6 +12,22 @@ orders, images, and admin authentication are handled by Firebase (free Spark pla
 - Product photos are compressed and stored in **Firestore** documents, so every device shows the same image (no paid Storage bucket needed).
 - Admin can add/remove products, adjust stock, and manage order statuses.
 - Bilingual French / Arabic interface.
+- Automatic new-order alerts by e-mail (FormSubmit) and WhatsApp (CallMeBot).
+
+## Order notifications
+
+Every order placed with the checkout form sends its full details to the owner.
+Copy the optional variables from `.env.example` into `.env` before building:
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_ORDER_NOTIFY_EMAIL` | E-mail address that receives the order (leave empty to disable). FormSubmit sends a one-time **Activate Form** link on the first order. |
+| `VITE_ORDER_WHATSAPP_PHONE` | WhatsApp number in international format, e.g. `+213660005597`. |
+| `VITE_ORDER_WHATSAPP_APIKEY` | CallMeBot API key (leave empty to disable WhatsApp alerts). |
+
+To enable WhatsApp alerts, send the message `I allow callmebot to send me messages`
+from the receiving phone to **+34 644 51 95 23**. CallMeBot replies with an API key;
+put it in `VITE_ORDER_WHATSAPP_APIKEY`, then rebuild and redeploy.
 
 ## Run locally
 

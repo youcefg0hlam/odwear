@@ -8,6 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_FIREBASE_MESSAGING_SENDER_ID?: string;
   readonly VITE_FIREBASE_APP_ID?: string;
   readonly VITE_ORDER_NOTIFY_EMAIL?: string;
+  readonly VITE_ORDER_WHATSAPP_PHONE?: string;
+  readonly VITE_ORDER_WHATSAPP_APIKEY?: string;
 }
 
 interface ImportMeta {
