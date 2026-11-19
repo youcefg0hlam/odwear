@@ -43,8 +43,19 @@ firebase deploy
 ```
 
 The first admin login automatically seeds the starter catalogue into Firestore if the
-collection is empty. Security rules are in `firestore.rules`. Firebase Storage is not
-used because it requires a paid plan; compressed images are stored in Firestore instead.
+collection is empty. Security rules are in `firestore.rules`: the catalogue is public
+read-only, customers can create orders, and only the designated admin email can modify
+products or read orders. Firebase Storage is not used because it requires a paid plan;
+compressed images are stored in Firestore instead.
+
+## Live deployment
+
+- Storefront: https://odwear-store.web.app
+- Admin console: https://odwear-store.web.app/?admin=1
+- Source: https://github.com/youcefg0hlam/odwear
+
+The admin account is created in Firebase Authentication. Keep its password private;
+it is intentionally not stored in this repository.
 
 ## Scripts
 
