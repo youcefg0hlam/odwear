@@ -1,0 +1,6 @@
+{
+  "name": "OD WEAR",
+  "description": "Boutique en ligne et magasin de mode masculine à Chlef, Algérie. Vêtements, baskets de luxe, montres et parfums avec livraison 58 wilayas et paiement à la livraison (COD).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
