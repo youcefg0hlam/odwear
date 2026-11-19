@@ -320,7 +320,7 @@ export default function App() {
 
   if (adminMode) {
     return (
-      <StoreProvider includeOrders>
+      <StoreProvider includeOrders={isAuthenticated}>
         {isAuthenticated ? (
           <AdminShell onExit={exitAdmin} userEmail={firebaseUser?.email ?? undefined} />
         ) : (
