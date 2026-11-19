@@ -12,12 +12,17 @@ export const Footer: React.FC<{ onEnterAdmin: () => void }> = ({ onEnterAdmin })
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Info */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-2.5 cursor-pointer group"
+              aria-label="OD WEAR — retour à l'accueil"
+              title="Retour à l'accueil"
+            >
               <img src="/logo.jpeg" alt="OD WEAR" className="h-11 w-11 rounded-lg object-cover bg-[#FCF1E1] ring-1 ring-[#BA5418]/40" />
-              <span className="text-base font-extrabold tracking-widest uppercase font-serif text-[#FCF1E1]">
+              <span className="text-base font-extrabold tracking-widest uppercase font-serif text-[#FCF1E1] group-hover:text-[#BA5418] transition-colors">
                 OD <span className="text-[#BA5418]">WEAR</span>
               </span>
-            </div>
+            </button>
             <p className="text-stone-400 text-xs leading-relaxed">
               {t.tagline}
             </p>

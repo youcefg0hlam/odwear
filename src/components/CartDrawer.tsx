@@ -41,8 +41,8 @@ export const CartDrawer: React.FC = () => {
         className="absolute inset-0 bg-black/75 backdrop-blur-sm transition-opacity" 
       />
 
-      <div className={`fixed inset-y-0 ${isAr ? 'left-0' : 'right-0'} max-w-full flex pl-10 sm:pl-16`}>
-        <div className="w-screen max-w-md bg-[#1A130E] border-l border-stone-800 text-stone-100 flex flex-col shadow-2xl">
+      <div className={`fixed inset-y-0 ${isAr ? 'left-0' : 'right-0'} max-w-full flex pl-6 sm:pl-16`}>
+        <div className="w-[calc(100vw-1.5rem)] sm:w-screen max-w-md bg-[#1A130E] border-l border-stone-800 text-stone-100 flex flex-col shadow-2xl">
           {/* Header */}
           <div className="p-5 border-b border-stone-800 flex items-center justify-between">
             <div className="flex items-center gap-2">

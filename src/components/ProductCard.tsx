@@ -103,7 +103,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Price & Size Selector Row */}
         <div>
           <div className="flex items-baseline justify-between gap-2 border-t border-stone-800/80 pt-3">
-            <div className="flex items-baseline gap-2">
+            <div className="flex flex-wrap items-baseline gap-2">
               <span className="text-base sm:text-lg font-bold text-[#FCF1E1] tabular-nums">
                 {product.price.toLocaleString()}
               </span>

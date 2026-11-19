@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, MessageSquareText, Sparkles, Truck, ShieldCheck, MapPin, Headphones } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 
 export const HeroCarousel: React.FC = () => {
   const { t, language, generateWhatsAppUrl } = useStore();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const slides = [
     {
@@ -52,10 +53,29 @@ export const HeroCarousel: React.FC = () => {
     }
   };
 
+  // Swipe left/right on phones to change slides.
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 40) {
+      if (delta < 0) nextSlide();
+      else prevSlide();
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <section className="relative overflow-hidden bg-[#100C09]">
       {/* Carousel Viewport */}
-      <div className="relative h-[480px] sm:h-[540px] lg:h-[600px] w-full bg-stone-950">
+      <div
+        className="relative h-[430px] sm:h-[540px] lg:h-[600px] w-full bg-stone-950 touch-pan-y"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {slides.map((slide, idx) => (
           <div
             key={idx}
@@ -78,7 +98,7 @@ export const HeroCarousel: React.FC = () => {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-2xl">
                   {/* Clean unboxed kicker */}
-                  <div className="flex items-center gap-2 mb-3 text-xs tracking-widest uppercase text-[#BA5418] font-semibold">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3 text-[10px] sm:text-xs tracking-widest uppercase text-[#BA5418] font-semibold">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{slide.badge}</span>
                     <span className="text-stone-600">·</span>
@@ -86,20 +106,20 @@ export const HeroCarousel: React.FC = () => {
                   </div>
 
                   {/* Headline */}
-                  <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#FCF1E1] mb-4 leading-tight font-serif text-balance">
+                  <h1 className="text-[26px] leading-[1.15] min-[380px]:text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#FCF1E1] mb-3 sm:mb-4 sm:leading-tight font-serif text-balance">
                     {slide.title}
                   </h1>
 
                   {/* Subtitle */}
-                  <p className="text-sm sm:text-base lg:text-lg text-stone-300 mb-8 leading-relaxed max-w-xl">
+                  <p className="text-xs min-[380px]:text-sm sm:text-base lg:text-lg text-stone-300 mb-6 sm:mb-8 leading-relaxed max-w-xl line-clamp-3 sm:line-clamp-none">
                     {slide.subtitle}
                   </p>
 
                   {/* CTAs */}
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-4">
                     <button
                       onClick={scrollToCatalog}
-                      className="px-6 py-3 rounded-lg bg-[#BA5418] text-[#FCF1E1] font-bold text-xs sm:text-sm tracking-wider uppercase hover:bg-[#D2702B] transition-colors shadow-lg cursor-pointer whitespace-nowrap"
+                      className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-[#BA5418] text-[#FCF1E1] font-bold text-[11px] sm:text-sm tracking-wider uppercase hover:bg-[#D2702B] transition-colors shadow-lg cursor-pointer whitespace-nowrap"
                     >
                       {t.hero.ctaPrimary}
                     </button>
@@ -108,7 +128,7 @@ export const HeroCarousel: React.FC = () => {
                       href={generateWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-stone-900/90 hover:bg-stone-800 text-stone-200 border border-stone-700 hover:border-stone-500 font-semibold text-xs sm:text-sm tracking-wide transition-colors cursor-pointer whitespace-nowrap"
+                      className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg bg-stone-900/90 hover:bg-stone-800 text-stone-200 border border-stone-700 hover:border-stone-500 font-semibold text-[11px] sm:text-sm tracking-wide transition-colors cursor-pointer whitespace-nowrap"
                     >
                       <MessageSquareText className="w-4 h-4 text-emerald-400" />
                       <span>{t.hero.ctaWhatsApp}</span>
@@ -124,20 +144,20 @@ export const HeroCarousel: React.FC = () => {
         <button
           onClick={prevSlide}
           aria-label="Previous Slide"
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-stone-700 text-[#FCF1E1] flex items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
+          className="hidden sm:flex absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-stone-700 text-[#FCF1E1] items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={nextSlide}
           aria-label="Next Slide"
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-stone-700 text-[#FCF1E1] flex items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
+          className="hidden sm:flex absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-stone-700 text-[#FCF1E1] items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
 
         {/* Carousel Dot Indicators */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
           {slides.map((_, i) => (
             <button
               key={i}

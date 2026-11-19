@@ -44,7 +44,7 @@ const Storefront: React.FC<{ onEnterAdmin: () => void }> = ({ onEnterAdmin }) =>
   const { cartCount, setIsCartOpen, generateWhatsAppUrl } = useStore();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#100C09] text-[#FCF1E1]">
+    <div className="min-h-screen flex flex-col bg-[#100C09] text-[#FCF1E1] pb-20 md:pb-0">
       <Header />
 
       <main className="flex-1">
@@ -135,7 +135,7 @@ const AdminLogin: React.FC<{ onSuccess: () => void; onBack: () => void }> = ({ o
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#100C09] px-4">
-      <div className="w-full max-w-sm bg-[#18120D] border border-stone-800 rounded-2xl p-8 shadow-2xl">
+      <div className="w-full max-w-sm bg-[#18120D] border border-stone-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
         <div className="flex items-center gap-2 text-[#BA5418] text-[11px] font-bold uppercase tracking-widest mb-6">
           <ShieldCheck className="w-4 h-4" />
           <span>Espace sécurisé</span>
@@ -215,18 +215,23 @@ const AdminShell: React.FC<{ onExit: () => void; userEmail?: string }> = ({ onEx
   return (
     <div className="min-h-screen bg-[#100C09] text-[#FCF1E1]">
       <header className="sticky top-0 z-40 bg-[#100C09]/95 backdrop-blur-md border-b border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <img src="/logo.jpeg" alt="OD WEAR" className="h-9 w-9 rounded-lg object-cover bg-[#FCF1E1] ring-1 ring-[#BA5418]/50" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+          <button
+            onClick={onExit}
+            title="Retour à la boutique"
+            aria-label="OD WEAR — retour à la boutique"
+            className="flex items-center gap-2 sm:gap-3 shrink-0 cursor-pointer group text-left"
+          >
+            <img src="/logo.jpeg" alt="OD WEAR" className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-cover bg-[#FCF1E1] ring-1 ring-[#BA5418]/50 group-hover:ring-[#BA5418] transition-all" />
             <div>
-              <span className="block text-sm font-extrabold tracking-widest uppercase font-serif">
-                OD <span className="text-[#BA5418]">WEAR</span>
+              <span className="block text-xs sm:text-sm font-extrabold tracking-widest uppercase font-serif group-hover:text-[#BA5418] transition-colors">
+                OD <span className="text-[#BA5418] font-normal">WEAR</span>
               </span>
-              <span className="block text-[10px] uppercase tracking-widest text-[#BA5418]">Administration</span>
+              <span className="hidden sm:block text-[10px] uppercase tracking-widest text-[#BA5418]">Administration</span>
             </div>
-          </div>
+          </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {userEmail && (
               <span className="hidden lg:block max-w-[180px] truncate text-[10px] text-stone-500" title={userEmail}>
                 {userEmail}
@@ -234,7 +239,8 @@ const AdminShell: React.FC<{ onExit: () => void; userEmail?: string }> = ({ onEx
             )}
             <button
               onClick={() => setSection('dashboard')}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+              title="Tableau de bord"
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
                 section === 'dashboard'
                   ? 'bg-[#BA5418] text-[#FCF1E1]'
                   : 'bg-stone-900 border border-stone-800 text-stone-300 hover:text-[#FCF1E1]'
@@ -246,7 +252,8 @@ const AdminShell: React.FC<{ onExit: () => void; userEmail?: string }> = ({ onEx
 
             <button
               onClick={() => setSection('docs')}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+              title="Documentation"
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
                 section === 'docs'
                   ? 'bg-[#BA5418] text-[#FCF1E1]'
                   : 'bg-stone-900 border border-stone-800 text-stone-300 hover:text-[#FCF1E1]'
@@ -259,7 +266,7 @@ const AdminShell: React.FC<{ onExit: () => void; userEmail?: string }> = ({ onEx
             <button
               onClick={onExit}
               title="Quitter l'administration"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-rose-300 hover:border-rose-800/60 text-xs font-semibold cursor-pointer transition-colors"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-rose-300 hover:border-rose-800/60 text-xs font-semibold cursor-pointer transition-colors"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Quitter</span>

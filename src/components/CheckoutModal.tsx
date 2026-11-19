@@ -94,7 +94,7 @@ export const CheckoutModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
       <div 
         className="relative w-full max-w-2xl bg-[#18120D] border border-stone-800 rounded-2xl shadow-2xl overflow-hidden my-auto"
         onClick={(e) => e.stopPropagation()}
@@ -118,7 +118,7 @@ export const CheckoutModal: React.FC = () => {
         </div>
 
         {/* Content Form */}
-        <form onSubmit={handleSubmitCOD} className="p-5 sm:p-7 space-y-5 max-h-[80vh] overflow-y-auto">
+        <form onSubmit={handleSubmitCOD} className="p-4 sm:p-7 space-y-5 max-h-[calc(100dvh-8rem)] sm:max-h-[80vh] overflow-y-auto">
           {/* Customer Name */}
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5 flex items-center gap-1.5">

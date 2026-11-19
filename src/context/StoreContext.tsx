@@ -3,6 +3,7 @@ import { Product, CartItem, Order, OrderStatus, Language, ProductCategory } from
 import { INITIAL_PRODUCTS, INITIAL_ORDERS } from '../data/products';
 import { translations } from '../data/translations';
 import { isFirebaseConfigured } from '../lib/firebase';
+import { notifyNewOrder } from '../lib/orderNotify';
 import {
   patchOrder,
   patchProduct,
@@ -194,6 +195,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode; includeOrders?
 
     setOrders(prev => [newOrder, ...prev]);
     void saveOrder(newOrder).catch((err) => console.error('Erreur enregistrement commande:', err));
+
+    // E-mail alert to the shop owner (no-op unless VITE_ORDER_NOTIFY_EMAIL is set).
+    void notifyNewOrder(newOrder).catch((err) =>
+      console.warn('Notification e-mail de la commande non envoyée:', err)
+    );
 
     // Decrement stock counts locally and in the shared catalogue
     setProducts(prev =>

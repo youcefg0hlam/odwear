@@ -264,10 +264,10 @@ export const AdminDashboard: React.FC = () => {
           <p className="text-xs sm:text-sm text-stone-400 mt-1">{t.admin.subtitle}</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-700 text-xs font-semibold text-stone-200 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-700 text-[11px] sm:text-xs font-semibold text-stone-200 transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-[#BA5418]" />
             <span>{t.admin.exportOrders}</span>
@@ -275,7 +275,7 @@ export const AdminDashboard: React.FC = () => {
 
           <button
             onClick={() => setIsAddProductOpen(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#BA5418] hover:bg-[#D2702B] text-xs font-bold text-[#FCF1E1] uppercase tracking-wider transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#BA5418] hover:bg-[#D2702B] text-[11px] sm:text-xs font-bold text-[#FCF1E1] uppercase tracking-wider transition-colors cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>{isAr ? 'إضافة منتج' : 'Ajouter Produit'}</span>
@@ -333,41 +333,41 @@ export const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Tabs Navigation (Segmented Control) */}
-      <div className="flex items-center gap-2 p-1 bg-stone-900/90 border border-stone-800 rounded-xl max-w-md mb-6">
+      <div className="flex items-center gap-1.5 sm:gap-2 p-1 bg-stone-900/90 border border-stone-800 rounded-xl w-full sm:max-w-md mb-6">
         <button
           onClick={() => setActiveTab('orders')}
-          className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+          className={`flex-1 min-w-0 py-2 px-1.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
             activeTab === 'orders'
               ? 'bg-[#261D16] text-[#FCF1E1] shadow-sm border border-stone-700/80'
               : 'text-stone-400 hover:text-[#FCF1E1]'
           }`}
         >
-          <ShoppingBag className="w-3.5 h-3.5 text-[#BA5418]" />
-          <span>{t.admin.tabOrders}</span>
+          <ShoppingBag className="w-3.5 h-3.5 text-[#BA5418] shrink-0" />
+          <span className="truncate">{t.admin.tabOrders}</span>
         </button>
 
         <button
           onClick={() => setActiveTab('products')}
-          className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+          className={`flex-1 min-w-0 py-2 px-1.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
             activeTab === 'products'
               ? 'bg-[#261D16] text-[#FCF1E1] shadow-sm border border-stone-700/80'
               : 'text-stone-400 hover:text-[#FCF1E1]'
           }`}
         >
-          <Box className="w-3.5 h-3.5 text-blue-400" />
-          <span>{t.admin.tabProducts}</span>
+          <Box className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+          <span className="truncate">{t.admin.tabProducts}</span>
         </button>
 
         <button
           onClick={() => setActiveTab('wilayas')}
-          className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+          className={`flex-1 min-w-0 py-2 px-1.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
             activeTab === 'wilayas'
               ? 'bg-[#261D16] text-[#FCF1E1] shadow-sm border border-stone-700/80'
               : 'text-stone-400 hover:text-[#FCF1E1]'
           }`}
         >
-          <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-          <span>{t.admin.tabAnalytics}</span>
+          <BarChart3 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+          <span className="truncate">{t.admin.tabAnalytics}</span>
         </button>
       </div>
 
@@ -407,7 +407,7 @@ export const AdminDashboard: React.FC = () => {
           {/* Orders Table */}
           <div className="bg-[#1A140F] border border-stone-800 rounded-xl overflow-hidden shadow-lg">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-stone-300">
+              <table className="w-full min-w-[760px] text-left text-xs text-stone-300">
                 <thead className="bg-stone-950/80 border-b border-stone-800 text-stone-400 uppercase tracking-wider text-[11px] font-semibold">
                   <tr>
                     <th className="py-3 px-4">Réf & Date</th>
@@ -518,7 +518,7 @@ export const AdminDashboard: React.FC = () => {
 
           <div className="bg-[#1A140F] border border-stone-800 rounded-xl overflow-hidden shadow-lg">
             <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-stone-300">
+            <table className="w-full min-w-[860px] text-left text-xs text-stone-300">
               <thead className="bg-stone-950/80 border-b border-stone-800 text-stone-400 uppercase tracking-wider text-[11px] font-semibold">
                 <tr>
                   <th className="py-3 px-4">{t.admin.productName}</th>
@@ -659,8 +659,8 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Add Product Modal */}
       {isAddProductOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg bg-[#18120D] border border-stone-800 rounded-2xl p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-lg max-h-[calc(100dvh-1.5rem)] overflow-y-auto bg-[#18120D] border border-stone-800 rounded-2xl p-5 sm:p-6 shadow-2xl my-auto">
             <h3 className="text-lg font-bold text-[#FCF1E1] font-serif mb-4">
               Ajouter un Nouveau Produit au Catalogue
             </h3>
@@ -779,7 +779,7 @@ export const AdminDashboard: React.FC = () => {
                 {imageError && <p className="mt-1.5 text-[11px] text-rose-400">{imageError}</p>}
               </div>
 
-              <div className="flex justify-end gap-3 pt-3 border-t border-stone-800">
+              <div className="flex justify-end gap-2 sm:gap-3 pt-3 border-t border-stone-800">
                 <button
                   type="button"
                   onClick={() => setIsAddProductOpen(false)}
@@ -802,8 +802,8 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Delete Product Confirmation */}
       {productToDelete && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-[#18120D] border border-stone-800 rounded-2xl p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-md max-h-[calc(100dvh-1.5rem)] overflow-y-auto bg-[#18120D] border border-stone-800 rounded-2xl p-5 sm:p-6 shadow-2xl my-auto">
             <h3 className="text-lg font-bold text-[#FCF1E1] font-serif mb-2">
               {isAr ? 'تأكيد حذف المنتج' : 'Confirmer la suppression'}
             </h3>

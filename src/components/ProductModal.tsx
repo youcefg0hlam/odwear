@@ -51,7 +51,7 @@ export const ProductModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
       <div 
         className="relative w-full max-w-4xl bg-[#18120D] border border-stone-800 rounded-2xl shadow-2xl overflow-hidden my-auto"
         onClick={(e) => e.stopPropagation()}
@@ -83,7 +83,7 @@ export const ProductModal: React.FC = () => {
           </div>
 
           {/* Product Details & Purchase Module */}
-          <div className="p-6 sm:p-8 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
+          <div className="p-4 sm:p-8 flex flex-col justify-between md:max-h-[85vh] md:overflow-y-auto">
             <div>
               {/* Brand and category meta */}
               <div className="flex items-center gap-2 text-xs font-semibold text-stone-400 uppercase tracking-widest">

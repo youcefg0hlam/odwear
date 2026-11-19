@@ -9,6 +9,11 @@ export const Header: React.FC = () => {
     setLanguage(language === 'fr' ? 'ar' : 'fr');
   };
 
+  const goHome = () => {
+    setActiveView('store');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-[#100C09]/95 backdrop-blur-md border-b border-stone-800/80 transition-colors">
       {/* Top micro announcement bar */}
@@ -29,19 +34,20 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Main Top Bar Contract: Zone 1 (Wordmark) - Zone 2 (4-5 Nav Links) - Zone 3 (Actions) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-6 sm:gap-8">
-        {/* Zone 1: Brand Logo */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-3 sm:gap-8">
+        {/* Zone 1: Brand Logo — always returns to the home page */}
         <button
-          onClick={() => setActiveView('store')}
-          className="flex items-center gap-2.5 shrink-0 cursor-pointer group"
+          onClick={goHome}
+          className="flex items-center gap-2 sm:gap-2.5 shrink-0 cursor-pointer group"
           aria-label="OD WEAR — accueil"
+          title="Retour à l'accueil"
         >
           <img
             src="/logo.jpeg"
             alt="OD WEAR"
-            className="h-10 w-10 sm:h-11 sm:w-11 rounded-lg object-cover bg-[#FCF1E1] ring-1 ring-[#BA5418]/50 group-hover:ring-[#BA5418] transition-all"
+            className="h-9 w-9 sm:h-11 sm:w-11 rounded-lg object-cover bg-[#FCF1E1] ring-1 ring-[#BA5418]/50 group-hover:ring-[#BA5418] transition-all"
           />
-          <span className="hidden lg:block text-sm font-extrabold tracking-widest uppercase font-serif text-stone-100 group-hover:text-[#BA5418] transition-colors">
+          <span className="block text-[11px] min-[380px]:text-xs sm:text-sm font-extrabold tracking-wider sm:tracking-widest uppercase font-serif text-stone-100 group-hover:text-[#BA5418] transition-colors">
             OD <span className="text-[#BA5418] font-normal tracking-wider">WEAR</span>
           </span>
         </button>
@@ -70,12 +76,12 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Zone 3: Actions (Language toggle + Shopping Bag) */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Language Switcher */}
           <button
             onClick={toggleLanguage}
             title={language === 'fr' ? 'Changer en Arabe' : 'Changer en Français'}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-stone-800 bg-stone-900/80 text-stone-300 hover:text-[#FCF1E1] hover:border-stone-700 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg border border-stone-800 bg-stone-900/80 text-stone-300 hover:text-[#FCF1E1] hover:border-stone-700 transition-all cursor-pointer"
           >
             <Globe className="w-3.5 h-3.5 text-[#BA5418]" />
             <span className="uppercase">{language === 'fr' ? 'العربية' : 'Français'}</span>
