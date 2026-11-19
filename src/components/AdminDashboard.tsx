@@ -44,7 +44,7 @@ const fileToStoredImage = (file: File): Promise<string> =>
       const img = new Image();
       img.onerror = () => reject(new Error('Format d\'image non pris en charge.'));
       img.onload = () => {
-        const maxSide = 1200;
+        const maxSide = 1000;
         const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
         const canvas = document.createElement('canvas');
         canvas.width = Math.max(1, Math.round(img.width * scale));
@@ -55,7 +55,7 @@ const fileToStoredImage = (file: File): Promise<string> =>
           return;
         }
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL('image/jpeg', 0.82));
+        resolve(canvas.toDataURL('image/jpeg', 0.72));
       };
       img.src = reader.result as string;
     };

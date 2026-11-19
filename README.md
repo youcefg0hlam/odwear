@@ -9,7 +9,7 @@ orders, images, and admin authentication are handled by Firebase (free Spark pla
 - Public storefront — catalogue, search, cart, WhatsApp checkout. No login required.
 - Separate admin console at `/?admin=1`, guarded by **Firebase Authentication**.
 - Products and orders live in **Cloud Firestore** — shared across every device.
-- Product photos are uploaded to **Firebase Storage** and shown to customers.
+- Product photos are compressed and stored in **Firestore** documents, so every device shows the same image (no paid Storage bucket needed).
 - Admin can add/remove products, adjust stock, and manage order statuses.
 - Bilingual French / Arabic interface.
 
@@ -32,10 +32,9 @@ code (`ODWEAR2026`, see `src/data/config.ts`) for local development only.
 2. Enable **Authentication** → Sign-in method → **Email/Password**.
    Then create one user, e.g. `admin@odwear.store`, with a strong password.
 3. Create **Firestore Database** → Create database → start in **production mode**.
-4. Create **Storage** → Get started.
-5. Project settings → Your apps → Web app → copy the config values into `.env`.
-6. Replace `REPLACE_WITH_YOUR_FIREBASE_PROJECT_ID` in `.firebaserc` with your project ID.
-7. Deploy (after installing the CLI with `npm i -g firebase-tools`):
+4. Project settings → Your apps → Web app → copy the config values into `.env`.
+5. Replace `REPLACE_WITH_YOUR_FIREBASE_PROJECT_ID` in `.firebaserc` with your project ID.
+6. Deploy (after installing the CLI with `npm i -g firebase-tools`):
 
 ```bash
 npm run build
@@ -44,7 +43,8 @@ firebase deploy
 ```
 
 The first admin login automatically seeds the starter catalogue into Firestore if the
-collection is empty. Security rules are in `firestore.rules` and `storage.rules`.
+collection is empty. Security rules are in `firestore.rules`. Firebase Storage is not
+used because it requires a paid plan; compressed images are stored in Firestore instead.
 
 ## Scripts
 

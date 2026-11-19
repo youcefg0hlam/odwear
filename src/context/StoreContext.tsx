@@ -12,7 +12,6 @@ import {
   subscribeToOrders,
   subscribeToProducts,
 } from '../lib/cloudData';
-import { deleteProductImage, uploadProductImage } from '../lib/productImages';
 
 interface StoreContextType {
   isCloudEnabled: boolean;
@@ -251,15 +250,10 @@ export const StoreProvider: React.FC<{ children: React.ReactNode; includeOrders?
   };
 
   const addNewProduct = async (product: Product) => {
-    let finalProduct = product;
-    try {
-      finalProduct = { ...product, image: await uploadProductImage(product.image, product.id) };
-    } catch (err) {
-      console.error('Erreur envoi image:', err);
-    }
-
-    setProducts(prev => [finalProduct, ...prev]);
-    void saveProduct(finalProduct)
+    // The compressed image data URL is stored directly in the Firestore document,
+    // so every device sees the same photo without needing a paid Storage bucket.
+    setProducts(prev => [product, ...prev]);
+    void saveProduct(product)
       .catch((err) => console.error('Erreur ajout produit:', err));
   };
 
@@ -269,7 +263,6 @@ export const StoreProvider: React.FC<{ children: React.ReactNode; includeOrders?
     setSelectedProduct(prev => (prev?.id === id ? null : prev));
     void removeProductDoc(id)
       .catch((err) => console.error('Erreur suppression produit:', err));
-    void deleteProductImage(id);
   };
 
   // WhatsApp Order Link Generator
